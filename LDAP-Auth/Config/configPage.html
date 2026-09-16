@@ -283,6 +283,8 @@
                 selLdapProfileImageFormat: document.querySelector("#selLdapProfileImageFormat"),
                 chkEnableAllFolders: document.querySelector('#chkEnableAllFolders'),
                 folderAccessList: document.querySelector('.folderAccess'),
+                chkEnableLiveTvAccess: document.querySelector('#chkEnableLiveTvAccess'),
+                chkEnableLiveTvManagement: document.querySelector('#chkEnableLiveTvManagement'),
                 txtPasswordResetUrl: document.querySelector("#txtLdapPasswordResetUrl")
             };
 
@@ -323,6 +325,10 @@
                     LdapConfigurationPage.chkEnableAllFolders.checked = config.EnableAllFolders;
                     /* Default to empty array if Enabled Folders is not set */
                     config.EnabledFolders = config.EnabledFolders || [];
+                    config.EnableLiveTvAccess = config.EnableLiveTvAccess || false;
+                    LdapConfigurationPage.chkEnableLiveTvAccess.checked = config.EnableLiveTvAccess;
+                    config.EnableLiveTvManagement = config.EnableLiveTvManagement || false;
+                    LdapConfigurationPage.chkEnableLiveTvManagement.checked = config.EnableLiveTvManagement;
                     LdapConfigurationPage.txtPasswordResetUrl.value = config.PasswordResetUrl || '';
                     loadMediaFolders(config).then(() => {
                       Dashboard.hideLoadingMsg();
@@ -331,6 +337,8 @@
 
                 const updateFolderListVisibility = () => {
                     document.querySelector('.folderAccessContainer').style.display =
+                        LdapConfigurationPage.chkEnableUserCreation.checked ? 'block' : 'none';
+                    document.querySelector('.liveTvAccessContainer').style.display =
                         LdapConfigurationPage.chkEnableUserCreation.checked ? 'block' : 'none';
                 }
 
@@ -416,6 +424,8 @@
                     folders = Array.prototype.filter.call(folders, folder => folder.checked)
                       .map(folder => folder.getAttribute("data-id"));
                     config.EnabledFolders = folders;
+                    config.EnableLiveTvAccess = LdapConfigurationPage.chkEnableLiveTvAccess.checked || false;
+                    config.EnableLiveTvManagement = LdapConfigurationPage.chkEnableLiveTvManagement.checked || false;
                     config.PasswordResetUrl = LdapConfigurationPage.txtPasswordResetUrl.value;
                     window.ApiClient.updatePluginConfiguration(LdapConfigurationPage.pluginUniqueId, config).then(Dashboard.processPluginConfigurationUpdateResult);
                 });
