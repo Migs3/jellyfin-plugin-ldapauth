@@ -190,12 +190,12 @@ namespace Jellyfin.Plugin.LDAP_Auth.Config
         public string[] EnabledFolders { get; set; }
 
         /// <summary>
-        /// Gets or sets a values indicating whether to enable Live TV Access.
+        /// Gets or sets a value indicating whether to enable Live TV Access.
         /// </summary>
         public bool EnableLiveTvAccess { get; set; } = false;
 
         /// <summary>
-        /// Gets or sets a values indicating whether to enable Live TV Access Management.
+        /// Gets or sets a value indicating whether to enable Live TV Access Management.
         /// </summary>
         public bool EnableLiveTvManagement { get; set; } = false;
 
