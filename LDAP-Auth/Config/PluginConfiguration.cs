@@ -43,8 +43,8 @@ namespace Jellyfin.Plugin.LDAP_Auth.Config
             LdapProfileImageFormat = ProfileImageFormat.Default;
             EnableAllFolders = false;
             EnabledFolders = Array.Empty<string>();
-            EnableLiveTvAccessByDefault = false;
-            EnableLiveTvManagementByDefault = false;
+            EnableLiveTvAccess = false;
+            EnableLiveTvManagement = false;
 
             LdapUsers = Array.Empty<LdapUser>();
         }
@@ -192,12 +192,12 @@ namespace Jellyfin.Plugin.LDAP_Auth.Config
         /// <summary>
         /// Gets or sets a values indicating whether to enable Live TV Access.
         /// </summary>
-        public bool EnableLiveTvAccessByDefault { get; set; } = false;
+        public bool EnableLiveTvAccess { get; set; } = false;
 
         /// <summary>
         /// Gets or sets a values indicating whether to enable Live TV Access Management.
         /// </summary>
-        public bool EnableLiveTvManagementByDefault { get; set; } = false;
+        public bool EnableLiveTvManagement { get; set; } = false;
 
         /// <summary>
         /// Gets or sets the password reset url.
